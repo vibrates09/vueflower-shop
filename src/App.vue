@@ -36,12 +36,12 @@
     <main>
       <div class="container mt-3">
         <div class="row">
-          <div v-for="idx in 4" :key="idx" class="col-sm-12 col-md-4 mb-3">
+          <div v-for="flower in flowers" :key="flower.id" class="col-sm-12 col-md-4 mb-3">
             <div class="card">
               <div class="text-center">
-                <img class="img-fluid" src="./img/flower1.jpg" alt="" srcset="">
+                <img class="img-fluid" :src="flower.url" alt="" srcset="">
               </div>
-              <button class="btn btn-info mt-3">Add to cart</button>
+              <button class="btn btn-info mt-3" @click="addToCartHandle(flower.id)">Add to cart</button>
             </div>
           </div>
         </div>
@@ -58,16 +58,24 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Icon from './img/flower1.jpg'
+import flower1 from './img/flower1.jpg'
+import flower2 from './img/flower2.jpg'
+import flower3 from './img/flower3.jpg'
+import flower4 from './img/flower4.jpg'
 export default {
   computed: {
     ...mapGetters({
-      cartCount: 'cartCount'
+      cartCount: 'cartCount',
+      flowers: 'flowers'
     })
   },
   data () {
     return {
-      msg: 'Hello world!!!!!!!!!!!!!!!!!!!!!!!'
+    }
+  },
+  methods: {
+    addToCartHandle (flowerID) {
+      this.$store.dispatch('addToCartAsync', flowerID)
     }
   }
 }

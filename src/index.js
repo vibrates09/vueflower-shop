@@ -1,19 +1,12 @@
 import _ from 'lodash';
+import Vue from 'vue'
+import App from './App.vue'
+import 'bootstrap';
 import './style.css';
-import Icon from './img/flower1.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function component() {
-  const element = document.createElement('div');
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
-  const myIcon = new Image();
-  myIcon.src = Icon;
-
-  element.appendChild(myIcon);
-
-  return element;
-}
-
-document.body.appendChild(component());

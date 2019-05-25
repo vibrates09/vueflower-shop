@@ -6,11 +6,13 @@
         <div class="card-body">
           <h5 class="card-title">{{flower.flowerName.length > 21 ? flower.flowerName.slice(0, 20) + '...' : flower.flowerName }}</h5>
           <div class="d-flex justify-content-between">
-            <h5 class="card-title mt-2">$ {{flower.price}}</h5>
+            <div>
+              <h5 class="card-title mt-2">$ {{flower.price}}</h5>
+              <!-- <span class="mt-2">{{flower.stockCount}} left</span> -->
+            </div>
             <button class="btn btn-info" @click="addToCartHandle(flower)">Add to cart</button>
           </div>
         </div>
-        
       </div>
     </div>
   </div>

@@ -17,12 +17,14 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)" @click="changeComponent('order')">My Orders</a>
+          <a class="nav-link" href="javascript:void(0)" @click="changeComponent('order')">My Orders
+            <span class="badge badge-info">{{orderCount > 0 ? orderCount : '' }}</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="javascript:void(0)" @click="changeComponent('cart')">
             My Cart
-            <span class="badge badge-info">{{cartCount}}</span>
+            <span class="badge badge-info">{{cartCount > 0 ? cartCount : '' }}</span>
           </a>
         </li>
       </ul>
@@ -37,7 +39,8 @@ export default {
   name: 'NavBar',
   computed: {
     ...mapGetters({
-      cartCount: 'cartCount'
+      cartCount: 'cartCount',
+      orderCount: 'orderCount'
     })
   },
   methods: {

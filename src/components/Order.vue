@@ -11,7 +11,7 @@
             <a href="javascript:void(0)">{{order.order_id}}</a>
           </div>
           <div>
-            <h5>Amount to Pay: ${{order.amountToPay}}</h5>
+            <h5>Total amount to pay: ${{order.amountToPay}}</h5>
           </div>
         </div>
         <div class="card-body">
@@ -24,7 +24,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{odr.flowerName}}</h5>
                   <p class="card-text">Quantity: {{ odr.quantity }}</p>
-                  <h4>Amount to Pay: ${{odr.amount}}</h4>
+                  <p>Amount: ${{odr.amount}}</p>
                 </div>
               </div>
             </div>

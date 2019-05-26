@@ -60,7 +60,8 @@ module.exports = {
     // make sure to include the plugin!
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      favicon: "./src/img/favicon.png"
     }),
     // new HtmlWebpackPlugin({
     //   template: 'src/404.html'

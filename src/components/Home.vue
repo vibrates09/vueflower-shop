@@ -1,14 +1,19 @@
 <template>
   <div class="row">
-    <div v-for="flower in flowers" :key="flower.id" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+    <div
+      v-for="flower in flowers"
+      :key="flower.id"
+      class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3"
+    >
       <div class="card">
         <img class="card-img-top" :src="flower.url" alt srcset>
         <div class="card-body">
-          <h5 class="card-title">{{flower.flowerName.length > 21 ? flower.flowerName.slice(0, 20) + '...' : flower.flowerName }}</h5>
+          <h5
+            class="card-title"
+          >{{flower.flowerName.length > 21 ? flower.flowerName.slice(0, 20) + '...' : flower.flowerName }}</h5>
           <div class="d-flex justify-content-between">
             <div>
               <h5 class="card-title mt-2">$ {{flower.price}}</h5>
-              <!-- <span class="mt-2">{{flower.stockCount}} left</span> -->
             </div>
             <button class="btn btn-info" @click="addToCartHandle(flower)">Add to cart</button>
           </div>

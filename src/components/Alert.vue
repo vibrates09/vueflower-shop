@@ -3,9 +3,8 @@
     v-if="notify"
     class="alert animated faster fadeInRight m-3 mr-3 position-fixed position-top-right fade show"
     :class="`alert-${type}`"
-    role="alert">
-    {{ message }}
-  </div>
+    role="alert"
+  >{{ message }}</div>
 </template>
 
 <script>

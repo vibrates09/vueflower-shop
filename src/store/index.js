@@ -94,8 +94,10 @@ export default new Vuex.Store({
     },
     toggleSelectItem (state, payload) {
       const res = state.cart.find(el => el.refs.id === payload)
-      console.log(res)
       res.selected = !res.selected
+    },
+    toggleSelectAll (state, payload) {
+      state.cart.forEach(el => el.selected = payload)
     }
   },
 
@@ -147,6 +149,9 @@ export default new Vuex.Store({
         message: 'Successfully removed from cart',
         notify: true
       })
+    },
+    toggleSelectAllAsync ({ commit }, payload) {
+      commit('toggleSelectAll', payload)
     },
     toggleSelectItemAsync ({ commit }, payload) {
       commit('toggleSelectItem', payload)

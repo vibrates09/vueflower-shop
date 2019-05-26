@@ -23,9 +23,8 @@
             data-dismiss="modal"
             class="btn"
             :class="`btn-${warningMsg.btnType}`"
-            @click="confirmAction">
-            Confirm
-          </button>
+            @click="confirmAction"
+          >Confirm</button>
         </div>
       </div>
     </div>

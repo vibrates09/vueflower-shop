@@ -71,6 +71,7 @@ export default new Vuex.Store({
 
       state.notifTimeout = setTimeout(() => {
         state.notif.notify = false
+        clearTimeout(state.notifTimeout)
       }, 3000)
     },
     reduceCart (state, payload) {

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import './404.html'
 import 'bootstrap'
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'

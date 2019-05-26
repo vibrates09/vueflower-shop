@@ -53,19 +53,31 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: '/',
+                publicPath: '/'
+            }
+          }
+        ],
+        exclude: path.resolve(__dirname, 'src/index.html')
       }
     ]
   },
   plugins: [
-    // make sure to include the plugin!
+    // make sure to include th be plugin!
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: 'src/index.html',
-      favicon: "./src/img/favicon.png"
+      favicon: './src/img/favicon.png'
     }),
-    // new HtmlWebpackPlugin({
-    //   template: 'src/404.html'
-    // }),
     new CleanWebpackPlugin()
   ]
 };

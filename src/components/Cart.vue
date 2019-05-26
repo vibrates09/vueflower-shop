@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12">
+      <Modal @handle="(id) => removeFromCart(id)" :productId="productId" />
       <h2>Cart</h2>
       <div class="mt-3" v-if="cart.length === 0">
         There are no items in this cart
@@ -14,7 +15,10 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title">{{prod.refs.flowerName}}</h5>
-                <button class="btn btn-danger" @click="removeFromCart(prod.refs.id)">Remove</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" @click="setProductId(prod.refs.id)">
+                  Remove
+                </button>
+                <!-- <button class="btn btn-danger" @click="removeFromCart(prod.refs.id)">Remove</button> -->
               </div>
               <div class="mb-3">
                 Total: ${{ prod.refs.price * prod.quantity }}
@@ -41,13 +45,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Modal from './Modal.vue'
+
 export default {
   name: 'cart',
+  components: {
+    Modal
+  },
   computed: {
     ...mapGetters({
       cart: 'cart'
     })
   },
+  data: () => ({
+    productId: null
+  }),
   methods: {
     addCart (flower) {
       this.$store.dispatch('addToCartAsync', flower)
@@ -60,6 +72,9 @@ export default {
     },
     removeFromCart (id) {
       this.$store.dispatch('removeFromCartAsync', id)
+    },
+    setProductId (id) {
+      this.productId = id
     }
   }
 }

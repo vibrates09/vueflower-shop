@@ -46,7 +46,8 @@ export default new Vuex.Store({
       } else {
         state.cart.push({
           refs: payload, // representative
-          quantity: 1
+          quantity: 1,
+          selected: false
         })
       }
     },
@@ -54,11 +55,7 @@ export default new Vuex.Store({
       state.currentComponent = payload
     },
     proceedToPay (state, payload) {
-      state.orders.push({
-        id:  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-        amount: payload.quantity * payload.refs.price,
-        ...payload
-      })
+      state.orders.push(payload)
     },
     notifyUser (state, payload) {
       state.notif.notify = false
@@ -87,6 +84,18 @@ export default new Vuex.Store({
       if (res >= 0) {
         state.cart.splice(res, 1)
       }
+    },
+    removeSelectedFromCart (state, payload) {
+      payload.forEach(el => {
+        const res = state.cart.findIndex(crt => crt.refs.id === el)
+        state.cart.splice(res, 1)
+      })
+      // state.cart.map(el => el.refs.id === )
+    },
+    toggleSelectItem (state, payload) {
+      const res = state.cart.find(el => el.refs.id === payload)
+      console.log(res)
+      res.selected = !res.selected
     }
   },
 
@@ -103,8 +112,25 @@ export default new Vuex.Store({
       commit('changeComponent', payload)
     },
     proceedToPayAsync ({ commit }, payload) {
-      commit('proceedToPay', payload)
-      commit('removeFromCart', payload.refs.id)
+      const overall = []
+      payload.map(el => {
+        overall.push({
+          product_id: el.refs.id,
+          flowerName: el.refs.flowerName,
+          price: el.refs.price,
+          quantity: el.quantity,
+          image: el.refs.url,
+          amount: el.refs.price * el.quantity
+        })
+      })
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
+      const order = {
+        order_id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        products: overall,
+        amountToPay: overall.map(el => el.amount).reduce(reducer)
+      }
+      commit('proceedToPay', order)
+      commit('removeSelectedFromCart', payload.map(el => el.refs.id))
       commit('notifyUser', {
         type: 'success',
         message: 'Successfully ordered',
@@ -121,6 +147,9 @@ export default new Vuex.Store({
         message: 'Successfully removed from cart',
         notify: true
       })
+    },
+    toggleSelectItemAsync ({ commit }, payload) {
+      commit('toggleSelectItem', payload)
     }
   }
 })

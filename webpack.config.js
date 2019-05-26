@@ -62,6 +62,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
+    // new HtmlWebpackPlugin({
+    //   template: 'src/404.html'
+    // }),
     new CleanWebpackPlugin()
   ]
 };
